@@ -6,12 +6,6 @@ export default function Main() {
   return (
     <>
       <div className="container d-flex flex-column">
-        <div className="row ">
-          {articles.map((post) => (
-            <PostsGrid title={post.titolo} key={post.id} />
-          ))}
-        </div>
-
         <FormTitlePost />
       </div>
     </>
