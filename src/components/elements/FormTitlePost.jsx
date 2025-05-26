@@ -15,7 +15,7 @@ export default function FormTitlePost() {
   //  DICHIARAZIONE ARRAY POSTS-----
   const [arrayPosts, setArrayPosts] = useState(articles);
 
-  //   FUNZIONE SUBMIT----------------------------
+  //   FUNZIONE AGGIUNTA ALL'ARRAY DELL'OGGETTO----------------------------
   const handleFormSubmit = (e) => {
     e.preventDefault();
     // puschamo l'array nuovo
@@ -23,6 +23,7 @@ export default function FormTitlePost() {
     setNewPost(initialValue);
   };
 
+  //   FUNZIONE CREAZIONE DELL'OGGETTO----------------------------
   const handleFormData = (e) => {
     // Creazine dell'oggetto
     setNewPost({
@@ -31,13 +32,22 @@ export default function FormTitlePost() {
     });
   };
 
+  //   FUNZIONE CANCELLAZIONE DELL'OGGETTO----------------------------
+  const handleDelete = (id) => {
+    setArrayPosts(arrayPosts.filter((post) => post.id !== id));
+  };
+
   return (
     <>
       {/* STAMPA NOMI ARTICOLI */}
       <div className="container d-flex flex-column">
         <div className="row">
           {arrayPosts.map((post) => (
-            <PostsGrid title={post.titolo} key={post.id} />
+            <PostsGrid
+              title={post.titolo}
+              key={post.id}
+              postDelete={() => handleDelete(post.id)}
+            />
           ))}
         </div>
       </div>
